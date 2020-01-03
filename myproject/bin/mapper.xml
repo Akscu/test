@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="cn.yhmis.mapper.OrderMapper">
+	<!-- 查询所有 -->
+	<select id="list" resultType="Order">
+		SELECT * FROM tb_order
+	</select>
+	
+	<!-- 获取某个记录 -->
+	<select id="get" parameterType="int" resultType="Order">
+		SELECT * FROM tb_order WHERE id=#{id}
+	</select>
+	
+	<!-- 新增保存 -->
+	<insert id="insert" parameterType="Order">
+		INSERT INTO tb_order (door_id,order_no,order_type,person_num,cashier,create_time,end_time,payment_type,price) 
+		VALUES(#{doorId},#{orderNo},#{orderType},#{personNum},#{cashier},#{createTime},#{endTime},#{paymentType},#{price})
+	</insert>
+	
+	<!-- 修改某条记录 -->
+	<update id="update" parameterType="Order">
+		UPDATE tb_order
+		<set>
+			DOOR_ID=#{doorId},
+			<if test="orderNo!=null">ORDER_NO=#{orderNo},</if>
+			<if test="orderType!=null">ORDER_TYPE=#{orderType},</if>
+			<if test="personNum!=null">PERSON_NUM=#{personNum},</if>
+			<if test="cashier!=null">CASHIER=#{cashier},</if>
+			<if test="createTime!=null">CREATE_TIME=#{createTime},</if>
+			<if test="endTime!=null">END_TIME=#{endTime},</if>
+			<if test="paymentType!=null">PAYMENT_TYPE=#{paymentType},</if>
+			<if test="price!=null">PRICE=#{price},</if>
+		</set>
+		WHERE id=#{id}
+	</update>
+	
+	<!-- 删除某条记录 -->
+	<delete id="delete" parameterType="int">
+		DELETE FROM tb_order WHERE id=#{id}
+	</delete>
+</mapper>
