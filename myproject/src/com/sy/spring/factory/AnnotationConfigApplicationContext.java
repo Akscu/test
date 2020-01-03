@@ -23,6 +23,7 @@ public class AnnotationConfigApplicationContext {
 	private Map<String,BeanPropertyDefinition> beanMap = new HashMap<>();
 	private Map<String,Object> instanceMap = new HashMap<>();
 	public AnnotationConfigApplicationContext(Class<?> configCls)throws Exception{
+		int a = 10;
 		//1.读取配置类
 		ComponentScan cs =
 		configCls.getDeclaredAnnotation(ComponentScan.class);
